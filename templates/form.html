@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labor Job Request</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32', // Forest green
+                        secondary: '#1B5E20', // Darker green
+                        accent: '#81C784', // Light green
+                        earth: '#795548', // Earth brown
+                        wheat: '#FFE082', // Wheat color
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-agriculture {
+            background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .bg-agriculture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+            z-index: 0;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: #2E7D32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+        .option-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            transition: all 0.3s ease;
+        }
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .submit-button {
+            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+            transition: all 0.3s ease;
+        }
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-agriculture py-8 px-4">
+    <div class="max-w-2xl mx-auto form-container rounded-2xl p-8 relative z-10">
+        <h2 class="text-3xl font-bold text-center text-primary mb-8">Request Labor</h2>
+        <form method="POST" class="space-y-6">
+            <div class="space-y-2">
+                <label for="latitude" class="block text-sm font-medium text-earth">Latitude</label>
+                <input type="text" id="latitude" name="latitude" required 
+                    class="w-full px-4 py-3 rounded-lg input-field"
+                    placeholder="Enter latitude">
+            </div>
+
+            <div class="space-y-2">
+                <label for="longitude" class="block text-sm font-medium text-earth">Longitude</label>
+                <input type="text" id="longitude" name="longitude" required 
+                    class="w-full px-4 py-3 rounded-lg input-field"
+                    placeholder="Enter longitude">
+            </div>
+
+            <div class="space-y-2">
+                <label for="age" class="block text-sm font-medium text-earth">Age</label>
+                <input type="number" id="age" name="age" required min="18" max="100" 
+                    class="w-full px-4 py-3 rounded-lg input-field"
+                    placeholder="Enter age">
+            </div>
+
+            <div class="space-y-3">
+                <label class="block text-sm font-medium text-earth">Gender</label>
+                <div class="flex flex-wrap gap-4">
+                    <label class="inline-flex items-center px-4 py-2 option-card rounded-lg cursor-pointer">
+                        <input type="radio" name="gender" value="Male" required class="w-5 h-5 text-primary">
+                        <span class="ml-2">Male</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-2 option-card rounded-lg cursor-pointer">
+                        <input type="radio" name="gender" value="Female" required class="w-5 h-5 text-primary">
+                        <span class="ml-2">Female</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-2 option-card rounded-lg cursor-pointer">
+                        <input type="radio" name="gender" value="Other" required class="w-5 h-5 text-primary">
+                        <span class="ml-2">Other</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <label class="block text-sm font-medium text-earth">Job Types</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="digging" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Digging</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="watering" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Watering</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="harvesting" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Harvesting</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="tractor_driving" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Tractor Driving</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="irrigation_management" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Irrigation Management</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="crop_monitoring" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Crop Monitoring</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="pesticide_application" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Pesticide Application</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="soil_testing" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Soil Testing</span>
+                    </label>
+                    <label class="inline-flex items-center px-4 py-3 option-card rounded-lg cursor-pointer">
+                        <input type="checkbox" name="job_type" value="disease_detection" class="w-5 h-5 text-primary rounded">
+                        <span class="ml-2">Disease Detection</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" 
+                class="w-full submit-button text-white font-semibold py-3 px-6 rounded-lg">
+                Submit Request
+            </button>
+        </form>
+        
+        {% if top_labor %}
+  <div style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+    <h3>Top Recommended Laborer</h3>
+    <p><strong>Name:</strong> {{ top_labor.name }}</p>
+    <p><strong>Phone:</strong> {{ top_labor.phone }}</p>
+    <p><strong>Hired Probability:</strong> {{ top_labor.probability }}%</p>
+  </div>
+{% endif %}
+
+    </div>
+</body>
+</html> 
