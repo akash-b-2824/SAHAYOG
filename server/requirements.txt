@@ -1,0 +1,4 @@
+mysql-connector-python
+flask
+pandas
+scikit-learn  # Replaced 'sklearn' with 'scikit-learn'

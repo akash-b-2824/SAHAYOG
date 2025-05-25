@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAHAYOG Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f0f4f8;
+    }
+    .sidebar {
+      width: 240px;
+      background: #2f855a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu {
+      padding-top: 20px;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.6rem;
+    }
+    .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+    .sidebar a:hover {
+      background: #276749;
+    }
+    .main {
+      flex: 1;
+      background: #f9fafb;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .profile {
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .profile img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+    .profile p {
+      margin: 8px 0 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="menu">
+      <h2>SAHAYOG</h2>
+      <a href="http://127.0.0.1:5000" id="myFrame" target="contentFrame">📋 Job Requests</a>
+      <a href="rental.html" id="myFrame" target="contentFrame">🚜 Tool Rentals</a>
+      <a href="settings.html" id="myFrame" target="contentFrame">⚙️ Settings</a>
+    </div>
+    <div class="profile">
+      <img src="data:image/png;base64,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" alt="Profile" />
+      <p><strong>Profile</strong></p>
+    </div>
+  </div>
+  <div class="main">
+    <iframe name="contentFrame" src="http://127.0.0.1:5000"></iframe>
+  </div>
+</body>
+</html>

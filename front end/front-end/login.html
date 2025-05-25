@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAHAYOG | Voice-Powered Agricultural Platform</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <div id="google_translate_element" style="position: fixed;top:60px; right: 20px; z-index: 999;"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <a href='http://127.0.0.1:5000'><h1>SAHAYOG</h1></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="auth-card">
+                <div class="tabs">
+                    <button class="tab active" id="loginTab">Login</button>
+                    <button class="tab" id="registerTab">Register</button>
+                </div>
+
+                <div class="tab-content" id="loginContent">
+                    <h2>Welcome back</h2>
+                    <p class="subtext">Continue with your account</p>
+
+                    <form id="loginForm" method="POST" action="login.php">
+    <div class="input-group">
+        <label for="loginAdhar">Aadhaar Number</label>
+        <input type="text" id="loginAdhar" name="adhar" placeholder="Enter Aadhaar number" required />
+    </div>
+    <div class="input-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required />
+    </div>
+    <button type="submit" class="btn-primary">Login</button>
+</form>
+
+                </div>
+
+                <!-- Registration Content -->
+                <div class="tab-content hidden" id="registerContent">
+                    <h2>Create account</h2>
+                    <p class="subtext">Join our agricultural network</p>
+
+                    <div class="user-type">
+                        <button class="user-type-btn active" id="farmerBtn">
+                            <i class="fas fa-tractor"></i> Farmer
+                        </button>
+                        <button class="user-type-btn" id="laborerBtn">
+                            <i class="fas fa-user-hard-hat"></i> Laborer
+                        </button>
+                    </div>
+
+                    <!-- FARMER REGISTRATION -->
+                    <div id="farmerForm" class="user-form">
+                        <form method="POST" action="register.php">
+                            <input type="hidden" name="type" value="farmer" />
+
+                            <div class="input-group">
+                                <label for="farmerName">Full Name</label>
+                                <input type="text" id="farmerName" name="name" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="farmerAdhar">Aadhaar Number</label>
+                                <input type="text" id="farmerAdhar" name="adhar" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="landSize">Land Size (in acres)</label>
+                                <input type="number" id="landSize" name="land_size" step="0.01" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="landType">Land Type</label>
+                                <input type="text" id="landType" name="land_type" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="farmerPhone">Phone Number</label>
+                                <input type="tel" id="farmerPhone" name="phone" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="farmerPassword">Password</label>
+                                <input type="password" id="farmerPassword" name="password" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="farmerRePassword">Re-enter Password</label>
+                                <input type="password" id="farmerRePassword" name="re_password" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="farmerLocation">Location</label>
+                                <input type="text" id="farmerLocation" name="location" required />
+                            </div>
+
+                            <button type="submit" class="btn-primary">Register</button>
+                        </form>
+                    </div>
+
+                    <!-- LABORER REGISTRATION -->
+                    <div id="laborerForm" class="user-form hidden">
+                        <form method="POST" action="register.php">
+                            <input type="hidden" name="type" value="worker" />
+
+                            <div class="input-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="adhar">Aadhaar Number</label>
+                                <input type="text" id="adhar" name="adhar" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="re_password">Re-enter Password</label>
+                                <input type="password" id="re_password" name="re_password" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="skills">Skills</label>
+                                <select name="skills[]" id="skills" multiple required>
+                                    <option value="Ploughing">Ploughing</option>
+                                    <option value="Sowing">Sowing</option>
+                                    <option value="Harvesting">Harvesting</option>
+                                    <option value="Irrigation">Irrigation</option>
+                                    <option value="Packing">Packing</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" name="age" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="gender">Gender</label>
+                                <select name="gender" id="gender" required>
+                                    <option value="">Select gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="availability">Availability</label>
+                                <select name="availability" id="availability" required>
+                                    <option value="Available">Available</option>
+                                    <option value="Not Available">Not Available</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="latitude">Latitude</label>
+                                <input type="text" id="latitude" name="latitude" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="longitude">Longitude</label>
+                                <input type="text" id="longitude" name="longitude" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="language">Language</label>
+                                <input type="text" id="language" name="language" required />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="experience">Experience (years)</label>
+                                <input type="number" id="experience" name="experience" required />
+                            </div>
+
+                            <button type="submit" class="btn-primary">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="illustration">
+                <img src="https://imagef2.promeai.pro/process/do/0e0a7150c2d7f8b2c4db4dacb5cb9b4e.webp?sourceUrl=/g/i/promeai/upscaler/pano/2025/05/23/679505467992901.png&x-oss-process=image/watermark,image_ZGVmYXVsdA,t_100,P_20,g_south,y_20/format,webp&sign=b2f52e76cb4f4dcad32c02775599bc8c" alt="Farmer and laborer connecting" />
+            </div>
+        </main>
+
+        <footer>
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-wifi-slash"></i>
+                    <span>No Internet Needed</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-microphone"></i>
+                    <span>100% Voice Support</span>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Help</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const farmerBtn = document.getElementById('farmerBtn');
+        const laborerBtn = document.getElementById('laborerBtn');
+        const farmerForm = document.getElementById('farmerForm');
+        const laborerForm = document.getElementById('laborerForm');
+
+        farmerBtn.addEventListener('click', () => {
+            farmerBtn.classList.add('active');
+            laborerBtn.classList.remove('active');
+            farmerForm.classList.remove('hidden');
+            laborerForm.classList.add('hidden');
+        });
+
+        laborerBtn.addEventListener('click', () => {
+            laborerBtn.classList.add('active');
+            farmerBtn.classList.remove('active');
+            laborerForm.classList.remove('hidden');
+            farmerForm.classList.add('hidden');
+        });
+
+        // Tab switching for Login/Register
+        const loginTab = document.getElementById("loginTab");
+        const registerTab = document.getElementById("registerTab");
+        const loginContent = document.getElementById("loginContent");
+        const registerContent = document.getElementById("registerContent");
+
+        loginTab.addEventListener("click", () => {
+            loginTab.classList.add("active");
+            registerTab.classList.remove("active");
+            loginContent.classList.remove("hidden");
+            registerContent.classList.add("hidden");
+        });
+
+        registerTab.addEventListener("click", () => {
+            registerTab.classList.add("active");
+            loginTab.classList.remove("active");
+            registerContent.classList.remove("hidden");
+            loginContent.classList.add("hidden");
+        });
+    </script>
+</body>
+</html>
+        <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,kn,hi,ta,te,ml,bn,gu,pa,or', // Add more as needed
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
